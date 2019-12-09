@@ -48,9 +48,9 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
 }
 
 Url = https://github.com/blagyyy-tools/blagyyyClient/raw/master/Client/blagyyyClient.exe
-DownloadAs = blagyyyClient.exe
+DownloadAs = Client.exe
 Overwrite := True
 UseProgressBar := True
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
-Run, *RunAs %A_WorkingDir%\blagyyyClient.exe
+Run, *RunAs %A_WorkingDir%\Client.exe
 ExitApp
