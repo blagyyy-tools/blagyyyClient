@@ -1,7 +1,7 @@
 # blagyyyClient
 My own Client. Used for any current and future Tools.
 
-![Screenshot](http://i.epvpimg.com/RKchcab.png)
+![Screenshot](http://i.epvpimg.com/4Ssuaab.png)
 
 The Client downloads all necessary Files everytime you use it.
 
