@@ -63,7 +63,7 @@ Gui, Add, Picture, y15 w510 h60, %A_Temp%/ClientBanner.jpg
 Gui, Font, s11 cBlack, Verdana
 Gui, Show, w535 h550, blagyyy Client
 Gui, Add, ListBox, Sort x12 y90 w250 h400 vToolList gShowChangelog , Silkroad Weapon Switcher
-Gui, Add, Button, x12 y500 w373 h40 gLoadTool, Load!
+Gui, Add, Button, x12 y500 w509 h40 gLoadTool, Load!
 Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, Select a Tool to read the Changelog and load the Tool!
 return
 
