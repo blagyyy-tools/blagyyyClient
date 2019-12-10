@@ -7,16 +7,6 @@ SetWorkingDir ,%A_ScriptDir%
 FileInstall, blagyyyClientIcon.ico, %a_temp%/blagyyyClientIcon.ico, 1
 FileInstall, ClientBanner.jpg, %a_temp%/ClientBanner.jpg, 1
 
-Default:
-Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
-Gui, Destroy
-Gui, Add, Picture, y15 w376 h60, %A_Temp%/ClientBanner.jpg
-Gui, Font, s11 cBlack, Verdana
-Gui, Show, w400 h550, blagyyy Client
-Gui, Add, ListBox, Sort x12 y90 w373 h400 vToolList, Silkroad Weapon Switcher
-Gui, Add, Button, x12 y500 w373 h40 gLoadTool, Load!
-return
-
 DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
     ;Check if the file already exists and if we must not overwrite it
       If (!Overwrite && FileExist(SaveFileAs))
@@ -60,6 +50,31 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
       Return
 }
 
+Url = https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt
+DownloadAs = ChangelogWeapSwitch.txt
+Overwrite := True
+UseProgressBar := false
+DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
+
+Default:
+FileRead, ChangelogWeapSwitch, ChangelogWeapSwitch.txt
+Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
+Gui, Add, Picture, y15 w510 h60, %A_Temp%/ClientBanner.jpg
+Gui, Font, s11 cBlack, Verdana
+Gui, Show, w535 h550, blagyyy Client
+Gui, Add, ListBox, Sort x12 y90 w250 h400 vToolList gShowChangelog , Silkroad Weapon Switcher
+Gui, Add, Button, x12 y500 w373 h40 gLoadTool, Load!
+Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, Select a Tool to read the Changelog and load the Tool!
+return
+
+ShowChangelog:
+Gui, Submit, Nohide
+if(ToolList = "Silkroad Weapon Switcher")
+Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogWeapSwitch%
+else
+Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, Select a Tool to read the Changelog and load the Tool!
+return
+
 LoadTool:
 Gui, Submit, Nohide
 if (ToolList = "Silkroad Weapon Switcher")
@@ -72,7 +87,7 @@ if (ToolList = "Silkroad Weapon Switcher")
     Url = https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/WeaponSwitcher/SwitcherConfig.ini
     DownloadAs = SwitcherConfig.ini
     Overwrite := False
-    UseProgressBar := True
+    UseProgressBar := false
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
     Run, *RunAs %A_WorkingDir%\AutoWeapSwitch.exe
     WinClose, blagyyy Client
@@ -80,6 +95,7 @@ return
 }
 
 GuiClose:
+FileDelete, ChangelogWeapSwitch.txt
 FileAppend, DEL "%A_ScriptFullPath%"`nDEL "%A_ScriptDir%\del.bat", del.bat
 
 Loop {
