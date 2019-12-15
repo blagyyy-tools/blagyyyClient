@@ -62,6 +62,8 @@ Overwrite := True
 UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
+FileSetAttrib +H, Client.exe
+
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
 Gui, Add, Picture, y15 w510 h60, %A_Temp%/ClientBanner.jpg
@@ -114,6 +116,7 @@ else if (ToolList = "Diablo III Cube Transmute")
     Overwrite := True
     UseProgressBar := True
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
+    FileSetAttrib +H, D3CT.exe
     Run, *RunAs %A_WorkingDir%\D3CT.exe
     WinClose, blagyyy Client
 return
