@@ -62,8 +62,9 @@ Overwrite := True
 UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
-FileSetAttrib, +H, %A_ScriptDir%/ChangelogD3CT.txt
-FileSetAttrib, +H, %A_ScriptDir%/ChangelogWeapSwitch.txt
+FileCreateDir, %A_Temp%\blagyyyClient
+FileMove %A_ScriptDir%/ChangelogWeapSwitch.txt, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt
+FileMove %A_ScriptDir%/ChangelogD3CT.txt, %A_Temp%\blagyyyClient/ChangelogD3CT.txt
 
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
