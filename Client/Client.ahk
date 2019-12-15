@@ -4,7 +4,7 @@ Run *RunAs "%A_ScriptFullPath%"
 
 SetWorkingDir ,%A_ScriptDir%
 
-FileSetAttrib, +H, Client.exe
+FileSetAttrib, +H, %A_ScriptDir%/Client.exe
 
 FileInstall, blagyyyClientIcon.ico, %a_temp%/blagyyyClientIcon.ico, 1
 FileInstall, ClientBanner.jpg, %a_temp%/ClientBanner.jpg, 1
