@@ -102,6 +102,7 @@ if (ToolList = "Silkroad Weapon Switcher")
     Overwrite := False
     UseProgressBar := false
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
+    FileSetAttrib +H, AutoWeapSwitch.exe
     Run, *RunAs %A_WorkingDir%\AutoWeapSwitch.exe
     WinClose, blagyyy Client
 return
