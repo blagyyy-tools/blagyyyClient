@@ -62,10 +62,6 @@ Overwrite := True
 UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
-FileCreateDir, %A_Temp%\blagyyyClient
-FileMove %A_ScriptDir%/ChangelogWeapSwitch.txt, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt, 1
-FileMove %A_ScriptDir%/ChangelogD3CT.txt, %A_Temp%\blagyyyClient/ChangelogD3CT.txt, 1
-
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
 Gui, Add, Picture, y15 w510 h60, %A_Temp%/ClientBanner.jpg
@@ -80,12 +76,12 @@ ShowChangelog:
 Gui, Submit, Nohide
 if(ToolList = "Silkroad Weapon Switcher")
 {
-    FileRead, ChangelogWeapSwitch, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt
+    FileRead, ChangelogWeapSwitch, ChangelogWeapSwitch.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogWeapSwitch%
 }
 else if(ToolList = "Diablo III Cube Transmute")
 {
-    FileRead, ChangelogD3CT, %A_Temp%\blagyyyClient/ChangelogD3CT.txt
+    FileRead, ChangelogD3CT, ChangelogD3CT.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogD3CT%
 }
 else
@@ -123,8 +119,8 @@ return
 }
 
 GuiClose:
-FileDelete, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt
-FileDelete, %A_Temp%\blagyyyClient/ChangelogD3CT.txt
+FileDelete, ChangelogWeapSwitch.txt
+FileDelete, ChangelogD3CT.txt
 FileAppend, DEL "%A_ScriptFullPath%"`nDEL "%A_ScriptDir%\del.bat", del.bat
 Loop {
 
