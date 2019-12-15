@@ -80,12 +80,12 @@ ShowChangelog:
 Gui, Submit, Nohide
 if(ToolList = "Silkroad Weapon Switcher")
 {
-    FileRead, ChangelogWeapSwitch, ChangelogWeapSwitch.txt
+    FileRead, ChangelogWeapSwitch, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogWeapSwitch%
 }
 else if(ToolList = "Diablo III Cube Transmute")
 {
-    FileRead, ChangelogD3CT, ChangelogD3CT.txt
+    FileRead, ChangelogD3CT, %A_Temp%\blagyyyClient/ChangelogD3CT.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogD3CT%
 }
 else
@@ -123,8 +123,8 @@ return
 }
 
 GuiClose:
-FileDelete, ChangelogWeapSwitch.txt
-FileDelete, ChangelogD3CT.txt
+FileDelete, %A_Temp%\blagyyyClient/ChangelogWeapSwitch.txt
+FileDelete, %A_Temp%\blagyyyClient/ChangelogD3CT.txt
 FileAppend, DEL "%A_ScriptFullPath%"`nDEL "%A_ScriptDir%\del.bat", del.bat
 Loop {
 
