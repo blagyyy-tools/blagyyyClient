@@ -54,9 +54,17 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
 UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt, %A_Temp%/ChangelogWeapSwitch.txt
 UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/DiabloIIICubeTransmute/master/Changelog.txt, %A_Temp%/ChangelogD3CT.txt
 
-FileSetAttrib +H, Client.exe
-
-sleep 500
+Url = https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt
+DownloadAs = %A_Temp%/ChangelogWeapSwitch.txt
+Overwrite := True
+UseProgressBar := false
+DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
+    
+Url = https://raw.githubusercontent.com/blagyyy-tools/DiabloIIICubeTransmute/master/Changelog.txt
+DownloadAs = %A_Temp%/ChangelogD3CT.txt
+Overwrite := True
+UseProgressBar := false
+DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
@@ -72,12 +80,12 @@ ShowChangelog:
 Gui, Submit, Nohide
 if(ToolList = "Silkroad Weapon Switcher")
 {
-    FileRead, ChangelogWeapSwitch, ChangelogWeapSwitch.txt
+    FileRead, ChangelogWeapSwitch, %A_Temp%/ChangelogWeapSwitch.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogWeapSwitch%
 }
 else if(ToolList = "Diablo III Cube Transmute")
 {
-    FileRead, ChangelogD3CT, ChangelogD3CT.txt
+    FileRead, ChangelogD3CT, %A_Temp%/ChangelogD3CT.txt
     Gui, Add, Edit, x270 y90 w250 h400 ReadOnly, %ChangelogD3CT%
 }
 else
@@ -98,7 +106,7 @@ if (ToolList = "Silkroad Weapon Switcher")
     Overwrite := False
     UseProgressBar := false
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
-    Run, *RunAs %A_WorkingDir%\AutoWeapSwitch.exe
+    Run, *RunAs %A_Temp%/AutoWeapSwitch.exe
     WinClose, blagyyy Client
 return
 }
@@ -109,7 +117,7 @@ else if (ToolList = "Diablo III Cube Transmute")
     Overwrite := True
     UseProgressBar := True
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
-    Run, *RunAs %A_WorkingDir%\D3CT.exe
+    Run, *RunAs %A_Temp%/D3CT.exe
     WinClose, blagyyy Client
 return
 }
