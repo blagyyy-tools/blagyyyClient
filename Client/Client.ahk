@@ -51,9 +51,6 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
 }
 
 
-UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt, %A_Temp%/ChangelogWeapSwitch.txt
-UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/DiabloIIICubeTransmute/master/Changelog.txt, %A_Temp%/ChangelogD3CT.txt
-
 Url = https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt
 DownloadAs = %A_Temp%/ChangelogWeapSwitch.txt
 Overwrite := True
@@ -123,16 +120,4 @@ return
 }
 
 GuiClose:
-FileDelete, %A_Temp%/ChangelogWeapSwitch.txt
-FileDelete, %A_Temp%/ChangelogD3CT.txt
-FileAppend, DEL "%A_ScriptFullPath%"`nDEL "%A_ScriptDir%\del.bat", del.bat
-Loop {
-
-   if (FileExist("del.bat"))
-
-      break
-
-}
-
-Run, del.bat,, Hide
 ExitApp
