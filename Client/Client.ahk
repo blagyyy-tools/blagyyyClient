@@ -63,8 +63,6 @@ UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
 FileSetAttrib +H, Client.exe
-FileSetAttrib +H, ChangelogWeapSwitch.txt
-FileSetAttrib +H, ChangelogD3CT.txt
 
 sleep 500
 
