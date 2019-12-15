@@ -50,17 +50,9 @@ DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True) {
       Return
 }
 
-Url = https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt
-DownloadAs = ChangelogWeapSwitch.txt
-Overwrite := True
-UseProgressBar := false
-DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
-Url = https://raw.githubusercontent.com/blagyyy-tools/DiabloIIICubeTransmute/master/Changelog.txt
-DownloadAs = ChangelogD3CT.txt
-Overwrite := True
-UseProgressBar := false
-DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
+UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/SRO-Weapon-Switcher/master/Changelog.txt, %A_Temp%/ChangelogWeapSwitch.txt
+UrlDownloadToFile, https://raw.githubusercontent.com/blagyyy-tools/DiabloIIICubeTransmute/master/Changelog.txt, %A_Temp%/ChangelogD3CT.txt
 
 FileSetAttrib +H, Client.exe
 
@@ -97,7 +89,7 @@ Gui, Submit, Nohide
 if (ToolList = "Silkroad Weapon Switcher")
 {
     Url = https://github.com/blagyyy-tools/SRO-Weapon-Switcher/raw/master/WeaponSwitcher/AutoWeapSwitch.exe
-    DownloadAs = AutoWeapSwitch.exe
+    DownloadAs = %A_Temp%/AutoWeapSwitch.exe
     Overwrite := True
     UseProgressBar := True
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
@@ -106,8 +98,6 @@ if (ToolList = "Silkroad Weapon Switcher")
     Overwrite := False
     UseProgressBar := false
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
-    FileSetAttrib +H, AutoWeapSwitch.exe
-    sleep 500
     Run, *RunAs %A_WorkingDir%\AutoWeapSwitch.exe
     WinClose, blagyyy Client
 return
@@ -115,20 +105,18 @@ return
 else if (ToolList = "Diablo III Cube Transmute")
 {
     Url = https://github.com/blagyyy-tools/DiabloIIICubeTransmute/raw/master/Cube/D3CubeTransmute.exe
-    DownloadAs = D3CT.exe
+    DownloadAs = %A_Temp%/D3CT.exe
     Overwrite := True
     UseProgressBar := True
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
-    FileSetAttrib +H, D3CT.exe
-    sleep 500
     Run, *RunAs %A_WorkingDir%\D3CT.exe
     WinClose, blagyyy Client
 return
 }
 
 GuiClose:
-FileDelete, ChangelogWeapSwitch.txt
-FileDelete, ChangelogD3CT.txt
+FileDelete, %A_Temp%/ChangelogWeapSwitch.txt
+FileDelete, %A_Temp%/ChangelogD3CT.txt
 FileAppend, DEL "%A_ScriptFullPath%"`nDEL "%A_ScriptDir%\del.bat", del.bat
 Loop {
 
