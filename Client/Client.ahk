@@ -63,6 +63,9 @@ UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
 FileSetAttrib +H, Client.exe
+FileSetAttrib +H, *.txt
+
+sleep 500
 
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
@@ -105,6 +108,7 @@ if (ToolList = "Silkroad Weapon Switcher")
     UseProgressBar := false
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
     FileSetAttrib +H, AutoWeapSwitch.exe
+    sleep 500
     Run, *RunAs %A_WorkingDir%\AutoWeapSwitch.exe
     WinClose, blagyyy Client
 return
@@ -117,6 +121,7 @@ else if (ToolList = "Diablo III Cube Transmute")
     UseProgressBar := True
     DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
     FileSetAttrib +H, D3CT.exe
+    sleep 500
     Run, *RunAs %A_WorkingDir%\D3CT.exe
     WinClose, blagyyy Client
 return
