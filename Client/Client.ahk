@@ -62,6 +62,9 @@ Overwrite := True
 UseProgressBar := false
 DownloadFile(Url, DownloadAs, Overwrite, UseProgressBar)
 
+FileSetAttrib, +H, %A_ScriptDir%/ChangelogD3CT.txt
+FileSetAttrib, +H, %A_ScriptDir%/ChangelogWeapSwitch.txt
+
 Default:
 Menu, Tray, Icon, %A_Temp%/blagyyyClientIcon.ico, 1, 1
 Gui, Add, Picture, y15 w510 h60, %A_Temp%/ClientBanner.jpg
